@@ -5,21 +5,20 @@ const port = 3000;
 
 
 app.set('views', __dirname + '/tpl');
-app.set('view engine', "jade");
+app.set('view engine', 'jade');
 app.engine('jade', require('jade').__express);
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req,res) => {
   res.render('page')
 });
 
-app.use(express.static(__dirname + '/public'));
-
-
-const io =  socket.listen(app.listen(port));
+const appListen = app.listen(port);
+const io =  socket.listen(appListen);
 
 io.sockets.on('connection', (socket) => {
 
-  socket.emit('message', { message: 'welcome to the chat' });
+  socket.emit('message', { message: 'Welcome to the chat!' });
   
   socket.on('send', (data) => {
       io.sockets.emit('message', data);
