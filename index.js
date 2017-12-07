@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
+var socket = require('socket.io');
 const port = 3000;
+
 
 app.set('views', __dirname + '/tpl');
 app.set('view engine', "jade");
@@ -12,14 +14,17 @@ app.get('/', (req,res) => {
 
 app.use(express.static(__dirname + '/public'));
 
-// app.listen(port);
-var io = require('socket.io').listen(app.listen(port));
 
-io.sockets.on('connection', function (socket) {
+const io =  socket.listen(app.listen(port));
+
+io.sockets.on('connection', (socket) => {
+
   socket.emit('message', { message: 'welcome to the chat' });
-  socket.on('send', function (data) {
+  
+  socket.on('send', (data) => {
       io.sockets.emit('message', data);
   });
+
 });
 
 console.log(`Listening on port: ${port}`);
