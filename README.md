@@ -1,6 +1,6 @@
 # Real Time Chat App
 
-A barebones Node.js app using [Express](http://expressjs.com/), [Jade](http://jade-lang.com/), and [Socket.io](https://socket.io/).
+A Node.js app using [Express](http://expressjs.com/), [Jade](http://jade-lang.com/), and [Socket.io](https://socket.io/).
 
 ## Running Locally
 
