@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
-var socket = require('socket.io');
+const socket = require('socket.io');
 const port = process.env.PORT || 3000;
-
 
 app.set('views', __dirname + '/tpl');
 app.set('view engine', 'pug');
@@ -28,5 +27,3 @@ io.sockets.on('connection', (socket) => {
   });
 
 });
-
-console.log(`Listening on port: ${port}`);
